@@ -43,10 +43,12 @@ export function printBoard(board) {
         - return false if there are still moves that can be made
 */
 export function checkIfNoMovesLeft(board) {
-    let check = false
     for (const row of board){
-        check = row.map((item) => 
-        ((item === '_') ? true : false)) 
+        for (const item of row){
+            if (item === '_') {
+                return false
+            }
+        }
     }
-   return check
+   return true
 }
