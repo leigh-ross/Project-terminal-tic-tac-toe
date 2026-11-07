@@ -28,7 +28,7 @@ test("given an example board with no open spaces (draw), should return true", ()
   const board = [
     ['X','O','X'],
     ['X','O','O'],
-    ['O','X','_']];
+    ['O','X','X']];
   expect(checkIfNoMovesLeft(board)).toBe(true);
 });
 /*
