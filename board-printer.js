@@ -17,7 +17,7 @@
 
     print board as array of arrays
     will always be 3x3
-    all rows will be empty with 3 spaces separated by |
+    all rows will be empty with 5 spaces separated by |
     after each array is printed there should be a line of = signs equal to length of 17
     1. branch
     2. print array of arrays
@@ -27,6 +27,14 @@
     nb _ represent open spaces on the board but do not display
 */
 export function printBoard(board) {
+    for (const row of board){
+        let paddedRow = row.map((item) => 
+            item === '_' ? ' '.padStart(3).padEnd(5) : item.padStart(3).padEnd(5)
+            )
+        const rows = paddedRow.join('|')
+        const breakLines = "=".repeat(17)
+        console.log(`${rows}\n${breakLines}`)
+    }
 }
 
 /*
