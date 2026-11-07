@@ -1,11 +1,36 @@
 import { checkIfNoMovesLeft } from "../board-printer";
 
-test("checkIfNoMovesLeft should return true if there are no moves left", () => {
-  const board = [];
-  expect(checkIfNoMovesLeft(board)).toBe(true);
+test("given an empty board, should return false", () => {
+  const board = [
+    ['_','_','_'],
+    ['_','_','_'],
+    ['_','_','_']];
+  expect(checkIfNoMovesLeft(board)).toBe(false);
 });
 
+test("given an example board, should return false", () => {
+  const board = [
+    ['X','_','_'],
+    ['_','X','_'],
+    ['O','O','X']];
+  expect(checkIfNoMovesLeft(board)).toBe(false);
+});
 
+test("given an example board with only one space open, should return false", () => {
+  const board = [
+    ['X','O','X'],
+    ['X','O','O'],
+    ['O','X','_']];
+  expect(checkIfNoMovesLeft(board)).toBe(false);
+});
+
+test("given an example board with no open spaces (draw), should return true", () => {
+  const board = [
+    ['X','O','X'],
+    ['X','O','O'],
+    ['O','X','_']];
+  expect(checkIfNoMovesLeft(board)).toBe(true);
+});
 /*
 checkIfNoMovesLeft(board) — TEST CASES
 =====================================
