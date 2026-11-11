@@ -9,8 +9,11 @@ import { checkIfNoMovesLeft } from './board-printer.js';
   Otherwise, return false
 */
 function checkRow(board, player, rowNumber) {
-  const row = board[rowNumber];
-  return row[0] === player && row[1] === player && row[2] === player;
+    for (let cell of board[rowNumber]){
+        if (cell !== player) {
+            return false
+        }
+    } return true;
 }
 
 /*
