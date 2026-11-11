@@ -1,9 +1,9 @@
 /*
-    Given a move and a board (an array of arrays), return true if the move is valid.
-        A move is represented by 2 numbers separated by a comma.
-        The first number is the row (1, 2 or 3) and the second number is the column (1, 2 or 3).
-            Some valid example moves are 1,3 and 2,2.
-            Some invalid examples are 0,1 and 2-1.
+Given a move and a board (an array of arrays), return true if the move is valid.
+    A move is represented by 2 numbers separated by a comma.
+    The first number is the row (1, 2 or 3) and the second number is the column (1, 2 or 3).
+        Some valid example moves are 1,3 and 2,2.
+        Some invalid examples are 0,1 and 2–1.
     Also, a move can only be made in a free space ('_') on the board.
     If the move is not valid:
         - you can output 'Try again...'
@@ -16,21 +16,43 @@
         ];
 */
 function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
+  const parts = String(move)
+    .split(",")
+    .map((part) => part.trim());
+  const isFormatValid =
+    parts.length === 2 && parts.every((part) => /^[1-3]$/.test(part));
+
+  if (isFormatValid) {
+    const row = Number(parts[0]) - 1;
+    const column = Number(parts[1]) - 1;
+    if (board[row][column] === "_") {
+      return true;
+    }
+  }
+
+  console.log("Try again...");
+  return false;
 }
 
 /*
-    Given 3 parameters:
-        - a board (an array of arrays)
-        - a move (2 numbers separated by a comma)
-        - a player ('X' or 'O'):
-    Check that the move is valid using the validateMove function.
-        If the move is not valid, the function should just return false.
-        If the move is valid, the function should:
-            - Update the board with the player's value ('X' or 'O') in the correct position
-            - Return true
+Given 3 parameters:
+    - a board (an array of arrays)
+    - a move (2 numbers separated by a comma)
+    - a player ('X' or 'O'):
+Check that the move is valid using the validateMove function.
+    If the move is not valid, the function should just return false.
+    If the move is valid, the function should:
+        - Update the board with the player's value ('X' or 'O') in the correct position
+        - Return true
 */
 export function makeMove(board, move, player) {
+  if (!validateMove(move, board)) {
     return false;
+  }
+
+  const [row, column] = String(move)
+    .split(",")
+    .map((part) => Number(part.trim()) - 1);
+  board[row][column] = player;
+  return true;
 }
