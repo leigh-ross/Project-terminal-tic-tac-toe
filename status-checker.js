@@ -50,3 +50,40 @@ function checkDiagonal(board, player) {
 
   return leftToRight || rightToLeft;
 }
+
+/*
+    There is no need to change any code below this line.
+*/
+
+function checkIfPlayerWon(board, player) {
+    for(let i = 0; i <= 2; i++) {
+        if(checkRow(board, player, i) || checkColumn(board, player, i)) {
+            return true;
+        }
+    }
+
+    if(checkDiagonal(board, player)) {
+        return true;
+    }
+
+    return false;
+}
+
+export function isGameOver(board) {
+    if(checkIfPlayerWon(board, 'X')) {
+        console.log('X has won the game!\n');
+        return true;
+    }
+
+    if(checkIfPlayerWon(board, 'O')) {
+        console.log('O has won the game!\n');
+        return true;
+    }
+
+    if(checkIfNoMovesLeft(board)) {
+        console.log('Game Over - It\s a tie!\n');
+        return true;
+    }
+
+    return false;
+}
